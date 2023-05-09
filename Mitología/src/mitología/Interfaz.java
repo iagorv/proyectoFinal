@@ -35,7 +35,7 @@ public class Interfaz extends javax.swing.JDialog {
          ArrayList<Dios> dioses=mitologia.getDioses();
          String todosDioses="";
              for (Dios dios : dioses) {
-            todosDioses=todosDioses+"\n"+dioses;
+            todosDioses=todosDioses+System.lineSeparator()+dios;
         }
              cuadroDioses.setText(todosDioses);
              
@@ -46,19 +46,12 @@ public class Interfaz extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        textoExplicandoBotonDios = new javax.swing.JTextField();
         BotónParaVerDioses = new javax.swing.JButton();
         seleccionarMitología = new javax.swing.JComboBox<>();
         cuadroDioses = new javax.swing.JLabel();
+        CUadroExplicandoBototnVerDioses = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        textoExplicandoBotonDios.setText("Dale al boton para ver todos los dioses");
-        textoExplicandoBotonDios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textoExplicandoBotonDiosActionPerformed(evt);
-            }
-        });
 
         BotónParaVerDioses.setText("dioses");
         BotónParaVerDioses.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +62,9 @@ public class Interfaz extends javax.swing.JDialog {
 
         seleccionarMitología.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Griega", "Egipcia", "Nórdica", "Japonesa", "Maya", "Hindú", "China", "Babilónica", "Yotuba", "Eslava", "Polinesia", "Celta" }));
 
-        cuadroDioses.setText("Cuadro dioses");
+        cuadroDioses.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        CUadroExplicandoBototnVerDioses.setText("Dale al boton para ver todos los dioses");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,38 +73,32 @@ public class Interfaz extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(50, 50, 50)
-                        .addComponent(textoExplicandoBotonDios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(36, 36, 36)
-                        .addComponent(seleccionarMitología, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
-                        .addComponent(BotónParaVerDioses))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(seleccionarMitología, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CUadroExplicandoBototnVerDioses, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cuadroDioses, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(cuadroDioses, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(152, Short.MAX_VALUE))
+                        .addGap(180, 180, 180)
+                        .addComponent(BotónParaVerDioses)))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(textoExplicandoBotonDios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotónParaVerDioses)
-                    .addComponent(seleccionarMitología, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(62, 62, 62)
-                .addComponent(cuadroDioses, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(32, 32, 32)
+                .addComponent(CUadroExplicandoBototnVerDioses)
+                .addGap(18, 18, 18)
+                .addComponent(BotónParaVerDioses)
+                .addGap(3, 3, 3)
+                .addComponent(seleccionarMitología, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cuadroDioses, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void textoExplicandoBotonDiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textoExplicandoBotonDiosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textoExplicandoBotonDiosActionPerformed
 
     private void BotónParaVerDiosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotónParaVerDiosesActionPerformed
   enseñarDioses();        // TODO add your handling code here:
@@ -159,8 +148,8 @@ public class Interfaz extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotónParaVerDioses;
+    private javax.swing.JLabel CUadroExplicandoBototnVerDioses;
     private javax.swing.JLabel cuadroDioses;
     private javax.swing.JComboBox<String> seleccionarMitología;
-    private javax.swing.JTextField textoExplicandoBotonDios;
     // End of variables declaration//GEN-END:variables
 }
