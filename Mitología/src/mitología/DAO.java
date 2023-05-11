@@ -141,8 +141,7 @@ public class DAO {
         }
 
     }
-    
-    
+
     public String getMitosSeleccionadosMitologia(boolean griegaSeleccionada, boolean egipciaSeleccionada, boolean nórdicaSeleccionada, boolean japonesaSeleccionada, boolean mayaSeleccionada, boolean hindúSeleccionada, boolean chinaSeleccionada, boolean babilónicaSeleccionada, boolean yorubaSeleccionada, boolean eslavaSeleccionada, boolean polinesiaSeleccionada, boolean celtaSeleccionada) {
         String mitosSeleccionadosMitologias = "";
         String query = "SELECT nombre FROM mitos WHERE ";
@@ -248,6 +247,90 @@ public class DAO {
 
         }
 
+    }
+
+    public String getNombreDeMitologiaParaInformacionDios(String nombreDelDios) {
+        String nombreMitologiaInformacion = "";
+String queryNombreMitología = "SELECT nombre FROM mitologia WHERE idMitologia = "
+            + "(SELECT idMitologia FROM dioses WHERE nombre = ?)";
+
+    try (Connection conexion = DriverManager.getConnection(cadeaConexion, bdUser, bdPassword);
+            PreparedStatement ps = conexion.prepareStatement(queryNombreMitología)) {
+        ps.setString(1, nombreDelDios);
+        ResultSet result = ps.executeQuery();
+
+        if (result.next()) {
+            nombreMitologiaInformacion = result.getString(1);
+        }
+    } catch (SQLException d) {
+        System.out.println("Código de Error: " + d.getErrorCode()
+                + "\nSQLState: " + d.getSQLState()
+                + "\nMensaje: " + d.getMessage());
+    }
+
+    return nombreMitologiaInformacion;
+    }
+
+    public String getDeQueEsDeidadInformacion(String nombreDelDios) {
+        String deQueEsDeidadInformacion = "";
+       String queryDeidadDe = "SELECT dios_de FROM dioses WHERE nombre = ?";
+
+    try (Connection conexion = DriverManager.getConnection(cadeaConexion, bdUser, bdPassword);
+            PreparedStatement ps = conexion.prepareStatement(queryDeidadDe)) {
+        ps.setString(1, nombreDelDios);
+        ResultSet result = ps.executeQuery();
+
+        if (result.next()) {
+            deQueEsDeidadInformacion = result.getString(1);
+        }
+    } catch (SQLException d) {
+        System.out.println("Código de Error: " + d.getErrorCode()
+                + "\nSQLState: " + d.getSQLState()
+                + "\nMensaje: " + d.getMessage());
+    }
+
+    return deQueEsDeidadInformacion;
+    }
+    
+    public String getPadreInformacion(String nombreDelDios){
+        String padre = "";
+       String queryPadre = "SELECT padre FROM dioses WHERE nombre = ?";
+ try (Connection conexion = DriverManager.getConnection(cadeaConexion, bdUser, bdPassword);
+            PreparedStatement ps = conexion.prepareStatement(queryPadre)) {
+        ps.setString(1, nombreDelDios);
+        ResultSet result = ps.executeQuery();
+
+        if (result.next()) {
+            padre = result.getString(1);
+            if (result.wasNull()) {
+                padre = "Su padre es desconocido";
+            }
+            
+            
+        }
+    } catch (SQLException d) {
+        System.out.println("Código de Error: " + d.getErrorCode()
+                + "\nSQLState: " + d.getSQLState()
+                + "\nMensaje: " + d.getMessage());
+    }
+        
+        
+        
+      return padre;
+    }
+    
+    
+    
+
+    public String getInformacionDios(String nombreDelDios) {
+       String informacionDios = "";
+    String nombreMitologia = getNombreDeMitologiaParaInformacionDios(nombreDelDios);
+    String deidad = getDeQueEsDeidadInformacion(nombreDelDios);
+String padre=getPadreInformacion(nombreDelDios);
+    informacionDios = nombreDelDios + ", deidad de " + deidad +
+            " pertenece a la mitología " + nombreMitologia+". "+padre;
+//Poner nombre padre, sale su id
+    return informacionDios;
     }
 
 }
