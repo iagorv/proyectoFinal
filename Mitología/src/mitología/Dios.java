@@ -9,10 +9,11 @@ package mitología;
  * @author a22iagorg
  */
 public class Dios {
-   private String nombre;
-   private String dios_de;
-   private String padre;
-   private String madre;
+
+    private String nombre;
+    private String dios_de;
+    private String padre;
+    private String madre;
 
     public Dios(String nombre, String dios_de, String padre, String madre) {
         this.nombre = nombre;
@@ -55,11 +56,9 @@ public class Dios {
 
     @Override
     public String toString() {
-        
-        return nombre+" dios de "+dios_de+"";
-        
-                
+
+        return nombre + " dios de " + dios_de + "";
+
     }
-   
-    
+
 }

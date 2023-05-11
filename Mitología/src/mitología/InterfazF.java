@@ -5,6 +5,8 @@
 package mitología;
 
 import java.awt.CardLayout;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,19 +20,16 @@ public class InterfazF extends javax.swing.JFrame {
     public InterfazF() {
         initComponents();
     }
-    
-       private void cambiarCard(String card) {
-        CardLayout cardL = (CardLayout)panelPrincipal.getLayout();
+
+    private void cambiarCard(String card) {
+        CardLayout cardL = (CardLayout) panelPrincipal.getLayout();
         cardL.show(panelPrincipal, card);
     }
-    
-    
-    
-    
-     DAO mitologia = new DAO("localhost", 3306, "mitologiabd", "root", "root");
-    
+
+    DAO mitologia = new DAO("localhost", 3306, "mitologiabd", "root", "root");
+
     public void mostrarDiosesSeleccionados() {
-        String diosesSeleccionados="";
+        String diosesSeleccionados = "";
         boolean griegaSeleccionada = Griega.isSelected();
         boolean egipciaSeleccionada = Egipcia.isSelected();
         boolean nórdicaSeleccionada = Nórdica.isSelected();
@@ -43,23 +42,42 @@ public class InterfazF extends javax.swing.JFrame {
         boolean eslavaSeleccionada = Eslava.isSelected();
         boolean polinesiaSeleccionada = Polinesia.isSelected();
         boolean celtaSeleccionada = Celta.isSelected();
-        
-        
-     diosesSeleccionados = mitologia.getDiosesSeleccionadosMitologias(griegaSeleccionada,
-             egipciaSeleccionada, nórdicaSeleccionada, japonesaSeleccionada, mayaSeleccionada, 
-             hindúSeleccionada, chinaSeleccionada, babilónicaSeleccionada, 
-             yorubaSeleccionada, eslavaSeleccionada, polinesiaSeleccionada, celtaSeleccionada);
 
-  
-    textoDioses.setText(diosesSeleccionados);
+        diosesSeleccionados = mitologia.getDiosesSeleccionadosMitologias(griegaSeleccionada,
+                egipciaSeleccionada, nórdicaSeleccionada, japonesaSeleccionada, mayaSeleccionada,
+                hindúSeleccionada, chinaSeleccionada, babilónicaSeleccionada,
+                yorubaSeleccionada, eslavaSeleccionada, polinesiaSeleccionada, celtaSeleccionada);
 
+        textoDioses.setText(diosesSeleccionados);
+
+    }
+    
+    public void mostrarMitosSeleccionados(){
+         String mitosSeleccionados = "";
+        boolean griegaSeleccionada = Griega.isSelected();
+        boolean egipciaSeleccionada = Egipcia.isSelected();
+        boolean nórdicaSeleccionada = Nórdica.isSelected();
+        boolean japonesaSeleccionada = Japonesa.isSelected();
+        boolean mayaSeleccionada = Maya.isSelected();
+        boolean hindúSeleccionada = Hindú.isSelected();
+        boolean chinaSeleccionada = China.isSelected();
+        boolean babilónicaSeleccionada = Babilónica.isSelected();
+        boolean yorubaSeleccionada = Yoruba.isSelected();
+        boolean eslavaSeleccionada = Eslava.isSelected();
+        boolean polinesiaSeleccionada = Polinesia.isSelected();
+        boolean celtaSeleccionada = Celta.isSelected();
+
+        mitosSeleccionados = mitologia.getMitosSeleccionadosMitologia(griegaSeleccionada,
+                egipciaSeleccionada, nórdicaSeleccionada, japonesaSeleccionada, mayaSeleccionada,
+                hindúSeleccionada, chinaSeleccionada, babilónicaSeleccionada,
+                yorubaSeleccionada, eslavaSeleccionada, polinesiaSeleccionada, celtaSeleccionada);
+
+        textoMitos.setText(mitosSeleccionados);
     }
     
     
     
     
-    
- 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -133,6 +151,7 @@ public class InterfazF extends javax.swing.JFrame {
         });
 
         textoDioses.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textoDioses.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         Japonesa.setText("Nórdica");
         Japonesa.addActionListener(new java.awt.event.ActionListener() {
@@ -142,6 +161,8 @@ public class InterfazF extends javax.swing.JFrame {
         });
 
         textoMitos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textoMitos.setToolTipText("");
+        textoMitos.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         Maya.setText("Hindú");
 
@@ -166,6 +187,7 @@ public class InterfazF extends javax.swing.JFrame {
         Eslava.setText("Celta");
 
         Griega.setText("Griega");
+        Griega.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(204, 0, 255), new java.awt.Color(204, 255, 51), new java.awt.Color(255, 0, 102), new java.awt.Color(255, 51, 51)));
         Griega.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GriegaActionPerformed(evt);
@@ -182,6 +204,8 @@ public class InterfazF extends javax.swing.JFrame {
 
         Egipcia.setText("Egipcia");
 
+        jButton2.setBackground(new java.awt.Color(255, 153, 153));
+        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("Volver a panel inicial");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,20 +242,20 @@ public class InterfazF extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PanelMitologiaLayout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(textoDioses, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
-                        .addComponent(textoMitos, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(PanelMitologiaLayout.createSequentialGroup()
                         .addGap(185, 185, 185)
                         .addComponent(tituloDioses)
                         .addGap(234, 234, 234)
-                        .addComponent(tituloMitos)))
-                .addGap(26, 26, 26))
+                        .addComponent(tituloMitos)
+                        .addGap(168, 168, 168))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMitologiaLayout.createSequentialGroup()
+                        .addComponent(textoDioses, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(textoMitos, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(24, 24, 24))))
             .addGroup(PanelMitologiaLayout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(30, 30, 30)
                 .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         PanelMitologiaLayout.setVerticalGroup(
             PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,41 +266,40 @@ public class InterfazF extends javax.swing.JFrame {
                         .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(tituloDioses)
                             .addComponent(tituloMitos))
-                        .addGap(39, 39, 39)
-                        .addComponent(textoMitos, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textoMitos, javax.swing.GroupLayout.DEFAULT_SIZE, 588, Short.MAX_VALUE)
+                            .addComponent(textoDioses, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(PanelMitologiaLayout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(14, 14, 14)
                         .addComponent(jButton2)
-                        .addGap(34, 34, 34)
-                        .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PanelMitologiaLayout.createSequentialGroup()
-                                .addComponent(Griega)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Egipcia)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Japonesa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Nórdica)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Hindú)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Maya)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Celta)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(China)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Yoruba)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Babilónica)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Polinesia)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Eslava)
-                                .addGap(47, 47, 47)
-                                .addComponent(botonParaQueAparezcan))
-                            .addComponent(textoDioses, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(91, Short.MAX_VALUE))
+                        .addGap(26, 26, 26)
+                        .addComponent(Griega)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Egipcia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Japonesa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Nórdica)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Hindú)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(Maya)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Celta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(China)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Yoruba)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Babilónica)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Polinesia)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Eslava)
+                        .addGap(47, 47, 47)
+                        .addComponent(botonParaQueAparezcan)))
+                .addContainerGap())
         );
 
         panelPrincipal.add(PanelMitologia, "card3");
@@ -287,7 +310,7 @@ public class InterfazF extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        cambiarCard("card3");        
+        cambiarCard("card3");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void NórdicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NórdicaActionPerformed
@@ -299,8 +322,8 @@ public class InterfazF extends javax.swing.JFrame {
     }//GEN-LAST:event_JaponesaActionPerformed
 
     private void botonParaQueAparezcanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonParaQueAparezcanActionPerformed
-        
         mostrarDiosesSeleccionados();
+        mostrarMitosSeleccionados();
         // TODO add your handling code here:
     }//GEN-LAST:event_botonParaQueAparezcanActionPerformed
 
