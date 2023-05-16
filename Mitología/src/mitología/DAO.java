@@ -336,6 +336,28 @@ public class DAO {
 
     }
 
+    public String comprobarNombre(String nombreDelDios) {
+        String nombreDios = "";
+        String queryNombre = "(SELECT nombre FROM dioses WHERE nombre = ?)";
+
+        try ( Connection conexion = DriverManager.getConnection(cadeaConexion, bdUser, bdPassword);  PreparedStatement ps = conexion.prepareStatement(queryNombre)) {
+            ps.setString(1, nombreDelDios);
+            ResultSet result = ps.executeQuery();
+
+            if (result.next()) {
+                nombreDios = result.getString(1);
+            } else {
+                nombreDios = "El dios no está en la base de datos";
+            }
+        } catch (SQLException d) {
+            System.out.println("Código de Error: " + d.getErrorCode()
+                    + "\nSQLState: " + d.getSQLState()
+                    + "\nMensaje: " + d.getMessage());
+        }
+
+        return nombreDios;
+    }
+
     public String getMitossaleDiosInformacion(String nombreDelDios) {
         String mitos = "";
 
@@ -369,6 +391,51 @@ public class DAO {
                 + " pertenece a la mitología " + nombreMitologia + ". " + padre + " y " + madre
                 + ".\nSale en los siguientes mitos:\n" + mitos;
         return informacionDios;
+    }
+
+    public String getinformacionMito(String nombreDelMito) {
+        String mito = "";
+        String mitosSale = "select descripcion from mitos where nombre= ?";
+
+        try ( Connection conexion = DriverManager.getConnection(cadeaConexion,
+                bdUser, bdPassword);  PreparedStatement ps = conexion.prepareStatement(mitosSale)) {
+            ps.setString(1, nombreDelMito);
+            ResultSet result = ps.executeQuery();
+            if (result.next()) {
+                mito += result.getString(1) + "\n";
+            }
+        } catch (SQLException d) {
+            System.out.println("Código de Error: " + d.getErrorCode()
+                    + "\nSQLState: " + d.getSQLState()
+                    + "\nMensaje: " + d.getMessage());
+        }
+
+        return mito;
+    }
+
+    public void AñadirDios(String mitologia, String nombre, String Deidad, String nombrePadre, String nombreMadre) {
+
+        String insertDios = "INSERT INTO dioses (nombre, dios_de, padre, madre, idMitologia) "
+                + "VALUES (?, ?, "
+                + "(SELECT idDios FROM dioses WHERE nombre = ?), "
+                + "(SELECT idDios FROM dioses WHERE nombre = ?), "
+                + "(SELECT idMitologia FROM mitologia WHERE nombre = ?))";
+
+        try ( Connection conexion = DriverManager.getConnection(cadeaConexion, bdUser,
+                bdPassword);  PreparedStatement ps = conexion.prepareStatement(insertDios)) {
+
+            ps.setString(1, nombre);
+            ps.setString(2, Deidad);
+            ps.setString(3, nombrePadre);
+            ps.setString(4, nombreMadre);
+            ps.setString(5, mitologia);
+
+        } catch (SQLException d) {
+            System.out.println("Código de Error: " + d.getErrorCode()
+                    + "\nSQLState: " + d.getSQLState()
+                    + "\nMensaje: " + d.getMessage());
+        }
+
     }
 
 }
