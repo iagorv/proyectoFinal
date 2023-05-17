@@ -271,6 +271,52 @@ public class DAO {
 
         return nombreMitologiaInformacion;
     }
+       public String comprobarNombre(String nombreDelDios) {
+        String nombreDios = "";
+        String queryNombre = "(SELECT nombre FROM dioses WHERE nombre = ?)";
+
+        try ( Connection conexion = DriverManager.getConnection(cadeaConexion, bdUser, bdPassword);  PreparedStatement ps = conexion.prepareStatement(queryNombre)) {
+            ps.setString(1, nombreDelDios);
+            ResultSet result = ps.executeQuery();
+
+            if (result.next()) {
+                nombreDios = result.getString(1);
+            } else {
+                nombreDios = "El dios no está en la base de datos";
+            }
+        } catch (SQLException d) {
+            System.out.println("Código de Error: " + d.getErrorCode()
+                    + "\nSQLState: " + d.getSQLState()
+                    + "\nMensaje: " + d.getMessage());
+        }
+
+        return nombreDios;
+    }
+       public String comprobarNombreMito(String nombreDelMito){
+           String nombreMito = "";
+        String queryNombre = "(SELECT nombre FROM mitos WHERE nombre = ?)";
+
+        try ( Connection conexion = DriverManager.getConnection(cadeaConexion, bdUser, bdPassword);  PreparedStatement ps = conexion.prepareStatement(queryNombre)) {
+            ps.setString(1, nombreDelMito);
+            ResultSet result = ps.executeQuery();
+
+            if (result.next()) {
+                nombreMito = result.getString(1);
+            } else {
+                nombreMito = "El mito no está en la base de datos";
+            }
+        } catch (SQLException d) {
+            System.out.println("Código de Error: " + d.getErrorCode()
+                    + "\nSQLState: " + d.getSQLState()
+                    + "\nMensaje: " + d.getMessage());
+        }
+
+        return nombreMito;
+           
+           
+           
+           
+       }
 
     public String getDeQueEsDeidadInformacion(String nombreDelDios) {
         String deQueEsDeidadInformacion = "";
@@ -336,27 +382,7 @@ public class DAO {
 
     }
 
-    public String comprobarNombre(String nombreDelDios) {
-        String nombreDios = "";
-        String queryNombre = "(SELECT nombre FROM dioses WHERE nombre = ?)";
-
-        try ( Connection conexion = DriverManager.getConnection(cadeaConexion, bdUser, bdPassword);  PreparedStatement ps = conexion.prepareStatement(queryNombre)) {
-            ps.setString(1, nombreDelDios);
-            ResultSet result = ps.executeQuery();
-
-            if (result.next()) {
-                nombreDios = result.getString(1);
-            } else {
-                nombreDios = "El dios no está en la base de datos";
-            }
-        } catch (SQLException d) {
-            System.out.println("Código de Error: " + d.getErrorCode()
-                    + "\nSQLState: " + d.getSQLState()
-                    + "\nMensaje: " + d.getMessage());
-        }
-
-        return nombreDios;
-    }
+ 
 
     public String getMitossaleDiosInformacion(String nombreDelDios) {
         String mitos = "";

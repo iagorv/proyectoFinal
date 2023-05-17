@@ -80,20 +80,29 @@ public class InterfazF extends javax.swing.JFrame {
         String nombreDios = meterNombreDiosInformación.getText();
         if(mitologia.comprobarNombre(nombreDios)=="El dios no está en la base de datos"){
              String datos = mitologia.comprobarNombre(nombreDios);
-             textoInformacionDios.setText(datos);
+             textoInformacionDios.setText("Introduzca un nombre correcto");
+             JOptionPane.showMessageDialog(null, "Error: El dios no está en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
         }
         else{
         String datos = mitologia.getInformacionDios(nombreDios);
-        textoInformacionDios.setText(datos);
+        textoInformacionDios.setText("<html>" + datos.replaceAll("\n", "<br>") + "</html>");
         }//cambiar TextArea textoInformacionDios por un jLabel
 
     }
 
     public void MostrarMito() {
         String nombreMito = meterNombreMito.getText();
+        //El mito no está en la base de datos
+        if(mitologia.comprobarNombreMito(nombreMito)=="El mito no está en la base de datos"){
+             String datos = mitologia.comprobarNombre(nombreMito);
+             labelMitosDescripcion.setText("Introduzca un nombre correcto");
+             JOptionPane.showMessageDialog(null, "Error: El mito no está en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
         String informacionMito = mitologia.getinformacionMito(nombreMito);
-        labelMitosDescripcion.setText("<html>" + informacionMito.replaceAll("\n", "<br>") + "</html>");
 
+        labelMitosDescripcion.setText("<html>" + informacionMito.replaceAll("\n", "<br>") + "</html>");
+        }
     }
 
     public void conseguirAñadirDios() {
@@ -119,10 +128,14 @@ public class InterfazF extends javax.swing.JFrame {
 
         panelPrincipal = new javax.swing.JPanel();
         PanelInicio = new javax.swing.JPanel();
-        botonIrMitologia = new javax.swing.JButton();
-        irMeterDios = new javax.swing.JButton();
-        BotonIrInformacionDioses = new javax.swing.JButton();
-        BotonIrInformacionMito = new javax.swing.JButton();
+        inicioAMitologias = new javax.swing.JButton();
+        inicioAMeter = new javax.swing.JButton();
+        inicioADios = new javax.swing.JButton();
+        inicioAMitos = new javax.swing.JButton();
+        ExplicarBotonMitologia = new javax.swing.JLabel();
+        ExplicarbotonInformacionMito = new javax.swing.JLabel();
+        ExplicarBotonMeterDios = new javax.swing.JLabel();
+        ExplicarBotonInformacionDioses = new javax.swing.JLabel();
         PanelMitologia = new javax.swing.JPanel();
         tituloMitos = new javax.swing.JLabel();
         Nórdica = new javax.swing.JCheckBox();
@@ -141,7 +154,10 @@ public class InterfazF extends javax.swing.JFrame {
         Celta = new javax.swing.JCheckBox();
         tituloDioses = new javax.swing.JLabel();
         Egipcia = new javax.swing.JCheckBox();
-        BotonVlverPanelIncial = new javax.swing.JButton();
+        MitologiaAInicio = new javax.swing.JButton();
+        MitologiaADioses = new javax.swing.JToggleButton();
+        MitologiaAMitos = new javax.swing.JToggleButton();
+        MitologiaAMeter = new javax.swing.JToggleButton();
         PanelAñadirDios = new javax.swing.JPanel();
         seleccionarMitologíaMeterDios = new javax.swing.JComboBox<>();
         nombreMeterDios = new javax.swing.JTextField();
@@ -150,86 +166,126 @@ public class InterfazF extends javax.swing.JFrame {
         nombreMeterPadre = new javax.swing.JTextField();
         nombreMeterMadre = new javax.swing.JTextField();
         añadirDios = new javax.swing.JButton();
+        MeterADios = new javax.swing.JToggleButton();
+        meterAMitos = new javax.swing.JToggleButton();
+        meterAMitologias = new javax.swing.JToggleButton();
         verInformacionDios = new javax.swing.JPanel();
         meterNombreDiosInformación = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        textoInformacionDios = new javax.swing.JTextArea();
         enseñarInformacionDios = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        DiosAInicio = new javax.swing.JButton();
+        textoInformacionDios = new javax.swing.JLabel();
+        DiosAMito = new javax.swing.JToggleButton();
+        diosAMeter = new javax.swing.JToggleButton();
+        diosAMitologias = new javax.swing.JToggleButton();
         verInformacionMitos = new javax.swing.JPanel();
-        BotonIrPanelPrincipal = new javax.swing.JButton();
+        mitoAInicio = new javax.swing.JButton();
         meterNombreMito = new javax.swing.JTextField();
         botonVerMito = new javax.swing.JButton();
         labelMitosDescripcion = new javax.swing.JLabel();
+        mitoADios = new javax.swing.JToggleButton();
+        mitoAMeter = new javax.swing.JToggleButton();
+        mitoAMitologia = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelPrincipal.setLayout(new java.awt.CardLayout());
 
-        botonIrMitologia.setText("Ir panel Mitologia");
-        botonIrMitologia.addActionListener(new java.awt.event.ActionListener() {
+        PanelInicio.setBackground(new java.awt.Color(128, 206, 215));
+        PanelInicio.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        PanelInicio.setForeground(new java.awt.Color(99, 199, 178));
+
+        inicioAMitologias.setBackground(new java.awt.Color(99, 199, 178));
+        inicioAMitologias.setText("Ir panel Mitologia");
+        inicioAMitologias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonIrMitologiaActionPerformed(evt);
+                inicioAMitologiasActionPerformed(evt);
             }
         });
 
-        irMeterDios.setText("Ir a panel meter dios");
-        irMeterDios.addActionListener(new java.awt.event.ActionListener() {
+        inicioAMeter.setBackground(new java.awt.Color(99, 199, 178));
+        inicioAMeter.setText("Ir a panel meter dios");
+        inicioAMeter.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                irMeterDiosActionPerformed(evt);
+                inicioAMeterActionPerformed(evt);
             }
         });
 
-        BotonIrInformacionDioses.setText("Ir a panel infromacion dioses");
-        BotonIrInformacionDioses.addActionListener(new java.awt.event.ActionListener() {
+        inicioADios.setBackground(new java.awt.Color(99, 199, 178));
+        inicioADios.setText("Ir a panel infromacion dioses");
+        inicioADios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonIrInformacionDiosesActionPerformed(evt);
+                inicioADiosActionPerformed(evt);
             }
         });
 
-        BotonIrInformacionMito.setText("Ir a panel informacion mito");
-        BotonIrInformacionMito.addActionListener(new java.awt.event.ActionListener() {
+        inicioAMitos.setBackground(new java.awt.Color(99, 199, 178));
+        inicioAMitos.setText("Ir a panel informacion mito");
+        inicioAMitos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonIrInformacionMitoActionPerformed(evt);
+                inicioAMitosActionPerformed(evt);
             }
         });
+
+        ExplicarBotonMitologia.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ExplicarBotonMitologia.setText("<html>\n Dale a este boton e irás a una pantalla para ver dioses y mitos de diferentes mitologías.\n\n</html>     ");
+
+        ExplicarbotonInformacionMito.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ExplicarbotonInformacionMito.setText("<html>\n Dale a este boton e irás a una pantalla donde pordrás leer diferentes mitos una vez sepas su nombre\n\n</html>     ");
+
+        ExplicarBotonMeterDios.setText("<html>  Dale a este boton e irás a una pantalla donde pordrás meter dioses en la base de datos  </html>     ");
+
+        ExplicarBotonInformacionDioses.setText("<html>  Dale a este boton e irás a una pantalla donde pordrás ver información sobre los dioses  </html>     ");
 
         javax.swing.GroupLayout PanelInicioLayout = new javax.swing.GroupLayout(PanelInicio);
         PanelInicio.setLayout(PanelInicioLayout);
         PanelInicioLayout.setHorizontalGroup(
             PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(PanelInicioLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelInicioLayout.createSequentialGroup()
+                .addGroup(PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(PanelInicioLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(ExplicarBotonMitologia, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, PanelInicioLayout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addComponent(inicioAMitologias)))
+                .addGap(18, 18, 18)
                 .addGroup(PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inicioAMitos)
                     .addGroup(PanelInicioLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(botonIrMitologia)
-                        .addGap(74, 74, 74)
-                        .addComponent(irMeterDios)
-                        .addGap(104, 104, 104)
-                        .addComponent(BotonIrInformacionDioses))
-                    .addGroup(PanelInicioLayout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(BotonIrInformacionMito)))
-                .addContainerGap(59, Short.MAX_VALUE))
+                        .addGap(6, 6, 6)
+                        .addComponent(ExplicarbotonInformacionMito, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addGroup(PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inicioAMeter, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ExplicarBotonMeterDios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(inicioADios)
+                    .addComponent(ExplicarBotonInformacionDioses, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35))
         );
         PanelInicioLayout.setVerticalGroup(
             PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelInicioLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addGroup(PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inicioAMitologias)
+                    .addComponent(inicioAMeter)
+                    .addComponent(inicioAMitos)
+                    .addComponent(inicioADios))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelInicioLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(irMeterDios)
-                            .addComponent(BotonIrInformacionDioses)))
-                    .addGroup(PanelInicioLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(botonIrMitologia)))
-                .addGap(41, 41, 41)
-                .addComponent(BotonIrInformacionMito)
-                .addContainerGap(568, Short.MAX_VALUE))
+                    .addComponent(ExplicarBotonMitologia, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(PanelInicioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(ExplicarbotonInformacionMito, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ExplicarBotonMeterDios, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ExplicarBotonInformacionDioses, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(693, Short.MAX_VALUE))
         );
 
         panelPrincipal.add(PanelInicio, "card2");
+
+        PanelMitologia.setBackground(new java.awt.Color(128, 206, 215));
 
         tituloMitos.setText("Mitos");
 
@@ -258,6 +314,7 @@ public class InterfazF extends javax.swing.JFrame {
 
         Hindú.setText("Maya");
 
+        botonParaQueAparezcan.setBackground(new java.awt.Color(142, 108, 136));
         botonParaQueAparezcan.setText("Buscar");
         botonParaQueAparezcan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,12 +351,35 @@ public class InterfazF extends javax.swing.JFrame {
 
         Egipcia.setText("Egipcia");
 
-        BotonVlverPanelIncial.setBackground(new java.awt.Color(255, 153, 153));
-        BotonVlverPanelIncial.setForeground(new java.awt.Color(0, 0, 0));
-        BotonVlverPanelIncial.setText("Volver a panel inicial");
-        BotonVlverPanelIncial.addActionListener(new java.awt.event.ActionListener() {
+        MitologiaAInicio.setBackground(new java.awt.Color(99, 199, 178));
+        MitologiaAInicio.setText("Volver a panel inicial");
+        MitologiaAInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonVlverPanelIncialActionPerformed(evt);
+                MitologiaAInicioActionPerformed(evt);
+            }
+        });
+
+        MitologiaADioses.setBackground(new java.awt.Color(99, 199, 178));
+        MitologiaADioses.setText("Ir a información de dioses");
+        MitologiaADioses.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MitologiaADiosesActionPerformed(evt);
+            }
+        });
+
+        MitologiaAMitos.setBackground(new java.awt.Color(99, 199, 178));
+        MitologiaAMitos.setText("Ir a informacion de mitos");
+        MitologiaAMitos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MitologiaAMitosActionPerformed(evt);
+            }
+        });
+
+        MitologiaAMeter.setBackground(new java.awt.Color(99, 199, 178));
+        MitologiaAMeter.setText("Ir a meter Dios");
+        MitologiaAMeter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MitologiaAMeterActionPerformed(evt);
             }
         });
 
@@ -340,13 +420,19 @@ public class InterfazF extends javax.swing.JFrame {
                     .addGroup(PanelMitologiaLayout.createSequentialGroup()
                         .addGap(197, 197, 197)
                         .addComponent(tituloDioses)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
                         .addComponent(tituloMitos)
                         .addGap(174, 174, 174))))
             .addGroup(PanelMitologiaLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(BotonVlverPanelIncial)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(MitologiaAInicio)
+                .addGap(28, 28, 28)
+                .addComponent(MitologiaADioses)
+                .addGap(32, 32, 32)
+                .addComponent(MitologiaAMitos)
+                .addGap(18, 18, 18)
+                .addComponent(MitologiaAMeter)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelMitologiaLayout.setVerticalGroup(
             PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -363,7 +449,11 @@ public class InterfazF extends javax.swing.JFrame {
                             .addComponent(textoMitos, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)))
                     .addGroup(PanelMitologiaLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
-                        .addComponent(BotonVlverPanelIncial)
+                        .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(MitologiaAInicio)
+                            .addComponent(MitologiaADioses)
+                            .addComponent(MitologiaAMitos)
+                            .addComponent(MitologiaAMeter))
                         .addGap(26, 26, 26)
                         .addComponent(Griega)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -395,6 +485,8 @@ public class InterfazF extends javax.swing.JFrame {
 
         panelPrincipal.add(PanelMitologia, "card3");
 
+        PanelAñadirDios.setBackground(new java.awt.Color(128, 206, 215));
+
         seleccionarMitologíaMeterDios.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Griega", "Egipcia", "Nórdica", "Japonesa", "Maya", "Hindú", "China", "Babilónica", "Yoruba", "Eslava", "Polinesia", "Celta" }));
 
         nombreMeterDios.setText("Nombre del dios");
@@ -411,6 +503,7 @@ public class InterfazF extends javax.swing.JFrame {
             }
         });
 
+        botonIrPanelPrincipal.setBackground(new java.awt.Color(99, 199, 178));
         botonIrPanelPrincipal.setText("Volver al panel inicial");
         botonIrPanelPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -422,10 +515,36 @@ public class InterfazF extends javax.swing.JFrame {
 
         nombreMeterMadre.setText("Madre");
 
+        añadirDios.setBackground(new java.awt.Color(142, 108, 136));
         añadirDios.setText("Añadir");
         añadirDios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 añadirDiosActionPerformed(evt);
+            }
+        });
+
+        MeterADios.setBackground(new java.awt.Color(99, 199, 178));
+        MeterADios.setText("Ir a información dioses");
+        MeterADios.setActionCommand("Ir a información de dioses");
+        MeterADios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MeterADiosActionPerformed(evt);
+            }
+        });
+
+        meterAMitos.setBackground(new java.awt.Color(99, 199, 178));
+        meterAMitos.setText("Ir a información de mitos");
+        meterAMitos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meterAMitosActionPerformed(evt);
+            }
+        });
+
+        meterAMitologias.setBackground(new java.awt.Color(99, 199, 178));
+        meterAMitologias.setText("Ir a Mitologías");
+        meterAMitologias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meterAMitologiasActionPerformed(evt);
             }
         });
 
@@ -434,36 +553,45 @@ public class InterfazF extends javax.swing.JFrame {
         PanelAñadirDiosLayout.setHorizontalGroup(
             PanelAñadirDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAñadirDiosLayout.createSequentialGroup()
-                .addGap(56, 56, 56)
                 .addGroup(PanelAñadirDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelAñadirDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(PanelAñadirDiosLayout.createSequentialGroup()
-                            .addComponent(botonIrPanelPrincipal)
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGroup(PanelAñadirDiosLayout.createSequentialGroup()
-                            .addGroup(PanelAñadirDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(seleccionarMitologíaMeterDios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nombreMeterPadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
-                            .addGroup(PanelAñadirDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(PanelAñadirDiosLayout.createSequentialGroup()
-                                    .addComponent(nombreMeterDios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(78, 78, 78)
-                                    .addComponent(deidadMeterDios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(PanelAñadirDiosLayout.createSequentialGroup()
-                                    .addGap(14, 14, 14)
-                                    .addComponent(nombreMeterMadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addContainerGap(266, Short.MAX_VALUE)))
                     .addGroup(PanelAñadirDiosLayout.createSequentialGroup()
-                        .addComponent(añadirDios)
-                        .addContainerGap(616, Short.MAX_VALUE))))
+                        .addGap(56, 56, 56)
+                        .addGroup(PanelAñadirDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(PanelAñadirDiosLayout.createSequentialGroup()
+                                .addGroup(PanelAñadirDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(seleccionarMitologíaMeterDios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(nombreMeterPadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(88, 88, 88)
+                                .addGroup(PanelAñadirDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(PanelAñadirDiosLayout.createSequentialGroup()
+                                        .addComponent(nombreMeterDios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(78, 78, 78)
+                                        .addComponent(deidadMeterDios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(PanelAñadirDiosLayout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(nombreMeterMadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(añadirDios)))
+                    .addGroup(PanelAñadirDiosLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(botonIrPanelPrincipal)
+                        .addGap(38, 38, 38)
+                        .addComponent(MeterADios)
+                        .addGap(43, 43, 43)
+                        .addComponent(meterAMitos)
+                        .addGap(39, 39, 39)
+                        .addComponent(meterAMitologias)))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         PanelAñadirDiosLayout.setVerticalGroup(
             PanelAñadirDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelAñadirDiosLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(botonIrPanelPrincipal)
-                .addGap(44, 44, 44)
+                .addContainerGap()
+                .addGroup(PanelAñadirDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonIrPanelPrincipal)
+                    .addComponent(MeterADios)
+                    .addComponent(meterAMitos)
+                    .addComponent(meterAMitologias))
+                .addGap(60, 60, 60)
                 .addGroup(PanelAñadirDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(seleccionarMitologíaMeterDios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nombreMeterDios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -474,10 +602,12 @@ public class InterfazF extends javax.swing.JFrame {
                     .addComponent(nombreMeterMadre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(104, 104, 104)
                 .addComponent(añadirDios)
-                .addContainerGap(377, Short.MAX_VALUE))
+                .addContainerGap(569, Short.MAX_VALUE))
         );
 
         panelPrincipal.add(PanelAñadirDios, "card4");
+
+        verInformacionDios.setBackground(new java.awt.Color(128, 206, 215));
 
         meterNombreDiosInformación.setText("nombre del dios");
         meterNombreDiosInformación.addActionListener(new java.awt.event.ActionListener() {
@@ -486,11 +616,7 @@ public class InterfazF extends javax.swing.JFrame {
             }
         });
 
-        textoInformacionDios.setColumns(20);
-        textoInformacionDios.setLineWrap(true);
-        textoInformacionDios.setRows(5);
-        jScrollPane1.setViewportView(textoInformacionDios);
-
+        enseñarInformacionDios.setBackground(new java.awt.Color(142, 108, 136));
         enseñarInformacionDios.setText("EnseñarInformacion");
         enseñarInformacionDios.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -498,10 +624,35 @@ public class InterfazF extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("volver a panel inicio");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        DiosAInicio.setBackground(new java.awt.Color(99, 199, 178));
+        DiosAInicio.setText("volver a panel inicio");
+        DiosAInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                DiosAInicioActionPerformed(evt);
+            }
+        });
+
+        DiosAMito.setBackground(new java.awt.Color(99, 199, 178));
+        DiosAMito.setText("Ir a panel informacion mito");
+        DiosAMito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DiosAMitoActionPerformed(evt);
+            }
+        });
+
+        diosAMeter.setBackground(new java.awt.Color(99, 199, 178));
+        diosAMeter.setText("Ir a meter dioses");
+        diosAMeter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diosAMeterActionPerformed(evt);
+            }
+        });
+
+        diosAMitologias.setBackground(new java.awt.Color(99, 199, 178));
+        diosAMitologias.setText("Ir a Mitologías");
+        diosAMitologias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                diosAMitologiasActionPerformed(evt);
             }
         });
 
@@ -511,42 +662,59 @@ public class InterfazF extends javax.swing.JFrame {
             verInformacionDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(verInformacionDiosLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
+                .addGroup(verInformacionDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(DiosAInicio)
+                    .addComponent(meterNombreDiosInformación, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(verInformacionDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(verInformacionDiosLayout.createSequentialGroup()
-                        .addGroup(verInformacionDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton4)
-                            .addComponent(meterNombreDiosInformación, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(103, 103, 103)
-                        .addComponent(enseñarInformacionDios)
-                        .addGap(0, 345, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                        .addGap(104, 104, 104)
+                        .addComponent(enseñarInformacionDios))
+                    .addGroup(verInformacionDiosLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(DiosAMito)
+                        .addGap(80, 80, 80)
+                        .addComponent(diosAMeter)
+                        .addGap(63, 63, 63)
+                        .addComponent(diosAMitologias)))
+                .addContainerGap(8, Short.MAX_VALUE))
+            .addGroup(verInformacionDiosLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(textoInformacionDios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         verInformacionDiosLayout.setVerticalGroup(
             verInformacionDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(verInformacionDiosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton4)
-                .addGap(26, 26, 26)
+                .addGroup(verInformacionDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(DiosAInicio)
+                    .addComponent(DiosAMito)
+                    .addComponent(diosAMeter)
+                    .addComponent(diosAMitologias))
+                .addGap(42, 42, 42)
                 .addGroup(verInformacionDiosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(meterNombreDiosInformación, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(enseñarInformacionDios))
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(271, Short.MAX_VALUE))
+                .addGap(48, 48, 48)
+                .addComponent(textoInformacionDios, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(312, Short.MAX_VALUE))
         );
 
         panelPrincipal.add(verInformacionDios, "card5");
 
-        BotonIrPanelPrincipal.setText("Ir panel principal");
-        BotonIrPanelPrincipal.addActionListener(new java.awt.event.ActionListener() {
+        verInformacionMitos.setBackground(new java.awt.Color(128, 206, 215));
+
+        mitoAInicio.setBackground(new java.awt.Color(99, 199, 178));
+        mitoAInicio.setText("Ir panel principal");
+        mitoAInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonIrPanelPrincipalActionPerformed(evt);
+                mitoAInicioActionPerformed(evt);
             }
         });
 
         meterNombreMito.setText("Nombre del mito");
 
+        botonVerMito.setBackground(new java.awt.Color(142, 108, 136));
         botonVerMito.setText("Mostrar Mito");
         botonVerMito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -555,6 +723,30 @@ public class InterfazF extends javax.swing.JFrame {
         });
 
         labelMitosDescripcion.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
+        mitoADios.setBackground(new java.awt.Color(99, 199, 178));
+        mitoADios.setText("Ir a información dioses");
+        mitoADios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitoADiosActionPerformed(evt);
+            }
+        });
+
+        mitoAMeter.setBackground(new java.awt.Color(99, 199, 178));
+        mitoAMeter.setText("Ir a meter dioses");
+        mitoAMeter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitoAMeterActionPerformed(evt);
+            }
+        });
+
+        mitoAMitologia.setBackground(new java.awt.Color(99, 199, 178));
+        mitoAMitologia.setText("Ir a Mitologías");
+        mitoAMitologia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mitoAMitologiaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout verInformacionMitosLayout = new javax.swing.GroupLayout(verInformacionMitos);
         verInformacionMitos.setLayout(verInformacionMitosLayout);
@@ -569,23 +761,34 @@ public class InterfazF extends javax.swing.JFrame {
                         .addComponent(botonVerMito))
                     .addGroup(verInformacionMitosLayout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addGroup(verInformacionMitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(verInformacionMitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(labelMitosDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonIrPanelPrincipal))))
-                .addContainerGap(83, Short.MAX_VALUE))
+                            .addGroup(verInformacionMitosLayout.createSequentialGroup()
+                                .addComponent(mitoAInicio)
+                                .addGap(55, 55, 55)
+                                .addComponent(mitoADios)
+                                .addGap(54, 54, 54)
+                                .addComponent(mitoAMeter)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(mitoAMitologia)))))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         verInformacionMitosLayout.setVerticalGroup(
             verInformacionMitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(verInformacionMitosLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
-                .addComponent(BotonIrPanelPrincipal)
+                .addGroup(verInformacionMitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mitoAInicio)
+                    .addComponent(mitoADios)
+                    .addComponent(mitoAMeter)
+                    .addComponent(mitoAMitologia))
                 .addGap(51, 51, 51)
                 .addGroup(verInformacionMitosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(meterNombreMito, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonVerMito))
                 .addGap(50, 50, 50)
                 .addComponent(labelMitosDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(113, Short.MAX_VALUE))
+                .addContainerGap(315, Short.MAX_VALUE))
         );
 
         panelPrincipal.add(verInformacionMitos, "card6");
@@ -595,9 +798,9 @@ public class InterfazF extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonIrMitologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIrMitologiaActionPerformed
+    private void inicioAMitologiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioAMitologiasActionPerformed
         cambiarCard("card3");
-    }//GEN-LAST:event_botonIrMitologiaActionPerformed
+    }//GEN-LAST:event_inicioAMitologiasActionPerformed
 
     private void NórdicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NórdicaActionPerformed
         // TODO add your handling code here:
@@ -621,9 +824,9 @@ public class InterfazF extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_GriegaActionPerformed
 
-    private void BotonVlverPanelIncialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonVlverPanelIncialActionPerformed
+    private void MitologiaAInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MitologiaAInicioActionPerformed
         cambiarCard("card2");        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonVlverPanelIncialActionPerformed
+    }//GEN-LAST:event_MitologiaAInicioActionPerformed
 
     private void nombreMeterDiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreMeterDiosActionPerformed
         // TODO add your handling code here:
@@ -633,9 +836,9 @@ public class InterfazF extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_deidadMeterDiosActionPerformed
 
-    private void irMeterDiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_irMeterDiosActionPerformed
+    private void inicioAMeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioAMeterActionPerformed
         cambiarCard("card4");        // TODO add your handling code here:
-    }//GEN-LAST:event_irMeterDiosActionPerformed
+    }//GEN-LAST:event_inicioAMeterActionPerformed
 
     private void botonIrPanelPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIrPanelPrincipalActionPerformed
         cambiarCard("card2");        // TODO add your handling code here:
@@ -649,21 +852,21 @@ public class InterfazF extends javax.swing.JFrame {
         mostrarDatosDios();        // TODO add your handling code here:
     }//GEN-LAST:event_enseñarInformacionDiosActionPerformed
 
-    private void BotonIrInformacionDiosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIrInformacionDiosesActionPerformed
+    private void inicioADiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioADiosActionPerformed
         cambiarCard("card5");        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonIrInformacionDiosesActionPerformed
+    }//GEN-LAST:event_inicioADiosActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void DiosAInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiosAInicioActionPerformed
         cambiarCard("card2");        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_DiosAInicioActionPerformed
 
-    private void BotonIrInformacionMitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIrInformacionMitoActionPerformed
+    private void inicioAMitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inicioAMitosActionPerformed
         cambiarCard("card6");        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonIrInformacionMitoActionPerformed
+    }//GEN-LAST:event_inicioAMitosActionPerformed
 
-    private void BotonIrPanelPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonIrPanelPrincipalActionPerformed
+    private void mitoAInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitoAInicioActionPerformed
         cambiarCard("card2");        // TODO add your handling code here:
-    }//GEN-LAST:event_BotonIrPanelPrincipalActionPerformed
+    }//GEN-LAST:event_mitoAInicioActionPerformed
 
     private void añadirDiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_añadirDiosActionPerformed
         conseguirAñadirDios();        // TODO add your handling code here:
@@ -672,6 +875,54 @@ public class InterfazF extends javax.swing.JFrame {
     private void botonVerMitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerMitoActionPerformed
 MostrarMito();        // TODO add your handling code here:
     }//GEN-LAST:event_botonVerMitoActionPerformed
+
+    private void MitologiaADiosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MitologiaADiosesActionPerformed
+cambiarCard("card5");        // TODO add your handling code here:
+    }//GEN-LAST:event_MitologiaADiosesActionPerformed
+
+    private void MitologiaAMitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MitologiaAMitosActionPerformed
+       cambiarCard("card6");
+    }//GEN-LAST:event_MitologiaAMitosActionPerformed
+
+    private void MitologiaAMeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MitologiaAMeterActionPerformed
+cambiarCard("card4");        // TODO add your handling code here:
+    }//GEN-LAST:event_MitologiaAMeterActionPerformed
+
+    private void MeterADiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MeterADiosActionPerformed
+       cambiarCard("card5"); // TODO add your handling code here:
+    }//GEN-LAST:event_MeterADiosActionPerformed
+
+    private void meterAMitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meterAMitosActionPerformed
+cambiarCard("card6");        // TODO add your handling code here:
+    }//GEN-LAST:event_meterAMitosActionPerformed
+
+    private void meterAMitologiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meterAMitologiasActionPerformed
+cambiarCard("card3");        // TODO add your handling code here:
+    }//GEN-LAST:event_meterAMitologiasActionPerformed
+
+    private void DiosAMitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiosAMitoActionPerformed
+cambiarCard("card6");        // TODO add your handling code here:
+    }//GEN-LAST:event_DiosAMitoActionPerformed
+
+    private void diosAMeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diosAMeterActionPerformed
+cambiarCard("card4");        // TODO add your handling code here:
+    }//GEN-LAST:event_diosAMeterActionPerformed
+
+    private void diosAMitologiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diosAMitologiasActionPerformed
+cambiarCard("card3");        // TODO add your handling code here:
+    }//GEN-LAST:event_diosAMitologiasActionPerformed
+
+    private void mitoADiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitoADiosActionPerformed
+cambiarCard("card5");        // TODO add your handling code here:
+    }//GEN-LAST:event_mitoADiosActionPerformed
+
+    private void mitoAMeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitoAMeterActionPerformed
+cambiarCard("card4");        // TODO add your handling code here:
+    }//GEN-LAST:event_mitoAMeterActionPerformed
+
+    private void mitoAMitologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitoAMitologiaActionPerformed
+cambiarCard("card3");        // TODO add your handling code here:
+    }//GEN-LAST:event_mitoAMitologiaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -711,18 +962,25 @@ MostrarMito();        // TODO add your handling code here:
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox Babilónica;
-    private javax.swing.JButton BotonIrInformacionDioses;
-    private javax.swing.JButton BotonIrInformacionMito;
-    private javax.swing.JButton BotonIrPanelPrincipal;
-    private javax.swing.JButton BotonVlverPanelIncial;
     private javax.swing.JCheckBox Celta;
     private javax.swing.JCheckBox China;
+    private javax.swing.JButton DiosAInicio;
+    private javax.swing.JToggleButton DiosAMito;
     private javax.swing.JCheckBox Egipcia;
     private javax.swing.JCheckBox Eslava;
+    private javax.swing.JLabel ExplicarBotonInformacionDioses;
+    private javax.swing.JLabel ExplicarBotonMeterDios;
+    private javax.swing.JLabel ExplicarBotonMitologia;
+    private javax.swing.JLabel ExplicarbotonInformacionMito;
     private javax.swing.JCheckBox Griega;
     private javax.swing.JCheckBox Hindú;
     private javax.swing.JCheckBox Japonesa;
     private javax.swing.JCheckBox Maya;
+    private javax.swing.JToggleButton MeterADios;
+    private javax.swing.JToggleButton MitologiaADioses;
+    private javax.swing.JButton MitologiaAInicio;
+    private javax.swing.JToggleButton MitologiaAMeter;
+    private javax.swing.JToggleButton MitologiaAMitos;
     private javax.swing.JCheckBox Nórdica;
     private javax.swing.JPanel PanelAñadirDios;
     private javax.swing.JPanel PanelInicio;
@@ -730,25 +988,33 @@ MostrarMito();        // TODO add your handling code here:
     private javax.swing.JCheckBox Polinesia;
     private javax.swing.JCheckBox Yoruba;
     private javax.swing.JButton añadirDios;
-    private javax.swing.JButton botonIrMitologia;
     private javax.swing.JButton botonIrPanelPrincipal;
     private javax.swing.JButton botonParaQueAparezcan;
     private javax.swing.JButton botonVerMito;
     private javax.swing.JTextField deidadMeterDios;
+    private javax.swing.JToggleButton diosAMeter;
+    private javax.swing.JToggleButton diosAMitologias;
     private javax.swing.JButton enseñarInformacionDios;
-    private javax.swing.JButton irMeterDios;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton inicioADios;
+    private javax.swing.JButton inicioAMeter;
+    private javax.swing.JButton inicioAMitologias;
+    private javax.swing.JButton inicioAMitos;
     private javax.swing.JLabel labelMitosDescripcion;
+    private javax.swing.JToggleButton meterAMitologias;
+    private javax.swing.JToggleButton meterAMitos;
     private javax.swing.JTextField meterNombreDiosInformación;
     private javax.swing.JTextField meterNombreMito;
+    private javax.swing.JToggleButton mitoADios;
+    private javax.swing.JButton mitoAInicio;
+    private javax.swing.JToggleButton mitoAMeter;
+    private javax.swing.JToggleButton mitoAMitologia;
     private javax.swing.JTextField nombreMeterDios;
     private javax.swing.JTextField nombreMeterMadre;
     private javax.swing.JTextField nombreMeterPadre;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JComboBox<String> seleccionarMitologíaMeterDios;
     private javax.swing.JLabel textoDioses;
-    private javax.swing.JTextArea textoInformacionDios;
+    private javax.swing.JLabel textoInformacionDios;
     private javax.swing.JLabel textoMitos;
     private javax.swing.JLabel tituloDioses;
     private javax.swing.JLabel tituloMitos;
