@@ -112,16 +112,28 @@ public class InterfazF extends javax.swing.JFrame {
 
         boolean seMetioDiosCorrectamente = mitologia.AñadirDios(mitologiaDiosAñadir, nombreDiosAñadir,
                 deidadAñadir, nombrePadreAñadir, nombreMadreAñadir);
-        if (!mitologia.ComprobarNombreMeter(nombreDiosAñadir)) {
+        if (mitologia.ComprobarNombreMeter(nombreDiosAñadir)) {
             JOptionPane.showMessageDialog(null, "Dios repetido:Ya hay un dios con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
         if (!mitologia.ComprobarNombreMadreMeter(nombreMadreAñadir)) {
-            JOptionPane.showMessageDialog(null, "Madre incorrecto:No hay ninguna diosa con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Madre incorrecta:No hay ninguna diosa con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
-        if(!mitologia.ComprobarNombrePadre(nombrePadreAñadir)){
-        JOptionPane.showMessageDialog(null, "Padre Incorrecto:No hay ningun dios con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+        if (mitologia.ComprobarNombreMadreMeter(nombreMadreAñadir)
+                && !mitologia.ComprobarMitologiaMadre(nombreMadreAñadir, mitologiaDiosAñadir)) {
+            JOptionPane.showMessageDialog(null, "Madre incorrecta:"
+                    + "Esa diosa pertenece a una mitologia diferente a la seleccionada", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+
+        if (!mitologia.ComprobarNombrePadre(nombrePadreAñadir)) {
+            JOptionPane.showMessageDialog(null, "Padre Incorrecto:No hay ningun dios con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+        if (mitologia.ComprobarNombrePadre(nombrePadreAñadir)
+                && !mitologia.ComprobarMitologiaPadre(nombreDiosAñadir, mitologiaDiosAñadir)) {
+            JOptionPane.showMessageDialog(null, "Padre incorrecto:Ese dios pertenece a una mitologia diferente a la seleccionada", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
 

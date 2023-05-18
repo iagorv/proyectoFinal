@@ -271,7 +271,8 @@ public class DAO {
 
         return nombreMitologiaInformacion;
     }
-       public String comprobarNombre(String nombreDelDios) {
+
+    public String comprobarNombre(String nombreDelDios) {
         String nombreDios = "";
         String queryNombre = "(SELECT nombre FROM dioses WHERE nombre = ?)";
 
@@ -292,8 +293,9 @@ public class DAO {
 
         return nombreDios;
     }
-       public String comprobarNombreMito(String nombreDelMito){
-           String nombreMito = "";
+
+    public String comprobarNombreMito(String nombreDelMito) {
+        String nombreMito = "";
         String queryNombre = "(SELECT nombre FROM mitos WHERE nombre = ?)";
 
         try ( Connection conexion = DriverManager.getConnection(cadeaConexion, bdUser, bdPassword);  PreparedStatement ps = conexion.prepareStatement(queryNombre)) {
@@ -312,11 +314,8 @@ public class DAO {
         }
 
         return nombreMito;
-           
-           
-           
-           
-       }
+
+    }
 
     public String getDeQueEsDeidadInformacion(String nombreDelDios) {
         String deQueEsDeidadInformacion = "";
@@ -382,8 +381,6 @@ public class DAO {
 
     }
 
- 
-
     public String getMitossaleDiosInformacion(String nombreDelDios) {
         String mitos = "";
 
@@ -438,9 +435,9 @@ public class DAO {
 
         return mito;
     }
-    
-    public boolean ComprobarNombreMeter(String nombre){
-        boolean nombreDiosCorrecto=true;
+
+    public boolean ComprobarNombreMeter(String nombre) {
+        boolean nombreDiosCorrecto = true;
         String mitosSale = "select nombre from dioses where nombre= ?";
 
         try ( Connection conexion = DriverManager.getConnection(cadeaConexion,
@@ -448,8 +445,8 @@ public class DAO {
             ps.setString(1, nombre);
             ResultSet result = ps.executeQuery();
             if (result.next()) {
-               nombreDiosCorrecto=false;
-                     
+                nombreDiosCorrecto = false;
+
             }
         } catch (SQLException d) {
             System.out.println("Código de Error: " + d.getErrorCode()
@@ -459,8 +456,9 @@ public class DAO {
 
         return nombreDiosCorrecto;
     }
-    public boolean ComprobarNombrePadre(String nombrePadre){
-        boolean nombrePadreCorrecto=false;
+
+    public boolean ComprobarNombrePadre(String nombrePadre) {
+        boolean nombrePadreCorrecto = false;
         String mitosSale = "select * from dioses where nombre= ?";
 
         try ( Connection conexion = DriverManager.getConnection(cadeaConexion,
@@ -468,8 +466,8 @@ public class DAO {
             ps.setString(1, nombrePadre);
             ResultSet result = ps.executeQuery();
             if (result.next()) {
-               nombrePadreCorrecto=true;
-                     
+                nombrePadreCorrecto = true;
+
             }
         } catch (SQLException d) {
             System.out.println("Código de Error: " + d.getErrorCode()
@@ -478,15 +476,34 @@ public class DAO {
         }
 
         return nombrePadreCorrecto;
-        
-        
-        
     }
-    
-    
-    
-    public boolean ComprobarNombreMadreMeter(String nombreMadre){
-        boolean nombreMadreCorrecto=false;
+
+    public boolean ComprobarMitologiaPadre(String nombrePadre, String mitologia) {
+        boolean mitologiaPadreCorrecto = false;
+        String mitosSale = "select nombre from mitologia where idmitologia=(select idMitologia from dioses where nombre =? )";
+
+        try ( Connection conexion = DriverManager.getConnection(cadeaConexion,
+                bdUser, bdPassword);  PreparedStatement ps = conexion.prepareStatement(mitosSale)) {
+            ps.setString(1, nombrePadre);
+            ResultSet result = ps.executeQuery();
+            if (result.next()) {
+                if (result.getString(1).equals(mitologia)) {
+                    mitologiaPadreCorrecto = true;
+                }
+
+            }
+        } catch (SQLException d) {
+            System.out.println("Código de Error: " + d.getErrorCode()
+                    + "\nSQLState: " + d.getSQLState()
+                    + "\nMensaje: " + d.getMessage());
+        }
+
+        return mitologiaPadreCorrecto;
+
+    }
+
+    public boolean ComprobarNombreMadreMeter(String nombreMadre) {
+        boolean nombreMadreCorrecto = false;
         String mitosSale = "select * from dioses where nombre= ?";
 
         try ( Connection conexion = DriverManager.getConnection(cadeaConexion,
@@ -494,8 +511,8 @@ public class DAO {
             ps.setString(1, nombreMadre);
             ResultSet result = ps.executeQuery();
             if (result.next()) {
-               nombreMadreCorrecto=true;
-                     
+                nombreMadreCorrecto = true;
+
             }
         } catch (SQLException d) {
             System.out.println("Código de Error: " + d.getErrorCode()
@@ -506,40 +523,58 @@ public class DAO {
         return nombreMadreCorrecto;
     }
     
-    
-    
-    
-    
-    
+    public boolean ComprobarMitologiaMadre(String nombreMadre, String mitologia) {
+        boolean mitologiaMadreCorrecto = false;
+        String mitosSale = "select nombre from mitologia where idmitologia=(select idMitologia from dioses where nombre =? )";
 
-    public boolean AñadirDios(String mitologia, String nombre, String Deidad, String nombrePadre, String nombreMadre) {
+        try ( Connection conexion = DriverManager.getConnection(cadeaConexion,
+                bdUser, bdPassword);  PreparedStatement ps = conexion.prepareStatement(mitosSale)) {
+            ps.setString(1, nombreMadre);
+            ResultSet result = ps.executeQuery();
+            if (result.next()) {
+                if (result.getString(1).equals(mitologia)) {
+                    mitologiaMadreCorrecto = true;
+                }
 
-        String insertDios = "INSERT INTO dioses (nombre, dios_de, padre, madre, idMitologia) " +
-            "VALUES (?, ?, " +
-            "(SELECT padre.idDios FROM (SELECT idDios FROM dioses WHERE nombre = ?) AS padre), " +
-            "(SELECT madre.idDios FROM (SELECT idDios FROM dioses WHERE nombre = ?) AS madre), " +
-            "(SELECT idMitologia FROM mitologia WHERE nombre = ?))";
-        if(ComprobarNombreMeter(nombre)&& ComprobarNombreMadreMeter(nombreMadre) && ComprobarNombrePadre(nombrePadre)){
-        try ( Connection conexion = DriverManager.getConnection(cadeaConexion, bdUser,
-                bdPassword);  PreparedStatement ps = conexion.prepareStatement(insertDios)) {
-
-            ps.setString(1, nombre);
-            ps.setString(2, Deidad);
-            ps.setString(3, nombrePadre);
-            ps.setString(4, nombreMadre);
-            ps.setString(5, mitologia);
-            int filasInsertadas=ps.executeUpdate();
-            return filasInsertadas>0;
+            }
         } catch (SQLException d) {
             System.out.println("Código de Error: " + d.getErrorCode()
                     + "\nSQLState: " + d.getSQLState()
                     + "\nMensaje: " + d.getMessage());
-        }}
+        }
+
+        return mitologiaMadreCorrecto;
+
+    }
+
+    public boolean AñadirDios(String mitologia, String nombre, String Deidad, String nombrePadre, String nombreMadre) {
+
+        String insertDios = "INSERT INTO dioses (nombre, dios_de, padre, madre, idMitologia) "
+                + "VALUES (?, ?, "
+                + "(SELECT padre.idDios FROM (SELECT idDios FROM dioses WHERE nombre = ?) AS padre), "
+                + "(SELECT madre.idDios FROM (SELECT idDios FROM dioses WHERE nombre = ?) AS madre), "
+                + "(SELECT idMitologia FROM mitologia WHERE nombre = ?))";
+        if (ComprobarNombreMeter(nombre) && ComprobarNombreMadreMeter(nombreMadre)
+                && ComprobarNombrePadre(nombrePadre) && ComprobarMitologiaPadre(nombrePadre,mitologia)
+                && ComprobarMitologiaMadre(nombreMadre, mitologia)) {
+            try ( Connection conexion = DriverManager.getConnection(cadeaConexion, bdUser,
+                    bdPassword);  PreparedStatement ps = conexion.prepareStatement(insertDios)) {
+
+                ps.setString(1, nombre);
+                ps.setString(2, Deidad);
+                ps.setString(3, nombrePadre);
+                ps.setString(4, nombreMadre);
+                ps.setString(5, mitologia);
+                int filasInsertadas = ps.executeUpdate();
+                return filasInsertadas > 0;
+            } catch (SQLException d) {
+                System.out.println("Código de Error: " + d.getErrorCode()
+                        + "\nSQLState: " + d.getSQLState()
+                        + "\nMensaje: " + d.getMessage());
+            }
+        }
         return false;
 
     }
 
 }
-
-
-
