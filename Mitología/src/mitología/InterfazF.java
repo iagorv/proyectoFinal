@@ -19,14 +19,14 @@ public class InterfazF extends javax.swing.JFrame {
      */
     public InterfazF() {
         initComponents();
+
     }
+    DAO mitologia = new DAO("localhost", 3306, "mitologiabd", "root", "root");
 
     private void cambiarCard(String card) {
         CardLayout cardL = (CardLayout) panelPrincipal.getLayout();
         cardL.show(panelPrincipal, card);
     }
-
-    DAO mitologia = new DAO("localhost", 3306, "mitologiabd", "root", "root");
 
     public void mostrarDiosesSeleccionados() {
         String diosesSeleccionados = "";
@@ -78,14 +78,13 @@ public class InterfazF extends javax.swing.JFrame {
     public void mostrarDatosDios() {
 
         String nombreDios = meterNombreDiosInformación.getText();
-        if(mitologia.comprobarNombre(nombreDios)=="El dios no está en la base de datos"){
-             String datos = mitologia.comprobarNombre(nombreDios);
-             textoInformacionDios.setText("Introduzca un nombre correcto");
-             JOptionPane.showMessageDialog(null, "Error: El dios no está en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-        String datos = mitologia.getInformacionDios(nombreDios);
-        textoInformacionDios.setText("<html>" + datos.replaceAll("\n", "<br>") + "</html>");
+        if (mitologia.comprobarNombre(nombreDios) == "El dios no está en la base de datos") {
+            String datos = mitologia.comprobarNombre(nombreDios);
+            textoInformacionDios.setText("Introduzca un nombre correcto");
+            JOptionPane.showMessageDialog(null, "Error: El dios no está en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String datos = mitologia.getInformacionDios(nombreDios);
+            textoInformacionDios.setText("<html>" + datos.replaceAll("\n", "<br>") + "</html>");
         }//cambiar TextArea textoInformacionDios por un jLabel
 
     }
@@ -93,15 +92,14 @@ public class InterfazF extends javax.swing.JFrame {
     public void MostrarMito() {
         String nombreMito = meterNombreMito.getText();
         //El mito no está en la base de datos
-        if(mitologia.comprobarNombreMito(nombreMito)=="El mito no está en la base de datos"){
-             String datos = mitologia.comprobarNombre(nombreMito);
-             labelMitosDescripcion.setText("Introduzca un nombre correcto");
-             JOptionPane.showMessageDialog(null, "Error: El mito no está en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        else{
-        String informacionMito = mitologia.getinformacionMito(nombreMito);
+        if (mitologia.comprobarNombreMito(nombreMito) == "El mito no está en la base de datos") {
+            String datos = mitologia.comprobarNombre(nombreMito);
+            labelMitosDescripcion.setText("Introduzca un nombre correcto");
+            JOptionPane.showMessageDialog(null, "Error: El mito no está en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            String informacionMito = mitologia.getinformacionMito(nombreMito);
 
-        labelMitosDescripcion.setText("<html>" + informacionMito.replaceAll("\n", "<br>") + "</html>");
+            labelMitosDescripcion.setText("<html>" + informacionMito.replaceAll("\n", "<br>") + "</html>");
         }
     }
 
@@ -112,9 +110,24 @@ public class InterfazF extends javax.swing.JFrame {
         String nombreMadreAñadir = nombreMeterMadre.getText();
         String mitologiaDiosAñadir = seleccionarMitologíaMeterDios.getSelectedItem().toString();
 
-        mitologia.AñadirDios(mitologiaDiosAñadir, nombreDiosAñadir,
+        boolean seMetioDiosCorrectamente = mitologia.AñadirDios(mitologiaDiosAñadir, nombreDiosAñadir,
                 deidadAñadir, nombrePadreAñadir, nombreMadreAñadir);
+        if (!mitologia.ComprobarNombreMeter(nombreDiosAñadir)) {
+            JOptionPane.showMessageDialog(null, "Dios repetido:Ya hay un dios con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
 
+        }
+        if (!mitologia.ComprobarNombreMadreMeter(nombreMadreAñadir)) {
+            JOptionPane.showMessageDialog(null, "Madre incorrecto:No hay ninguna diosa con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+        if(!mitologia.ComprobarNombrePadre(nombrePadreAñadir)){
+        JOptionPane.showMessageDialog(null, "Padre Incorrecto:No hay ningun dios con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+
+        if (seMetioDiosCorrectamente) {
+            JOptionPane.showMessageDialog(null, "EL dios se añadió correctamente");
+        }
     }
 
     /**
@@ -873,55 +886,55 @@ public class InterfazF extends javax.swing.JFrame {
     }//GEN-LAST:event_añadirDiosActionPerformed
 
     private void botonVerMitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonVerMitoActionPerformed
-MostrarMito();        // TODO add your handling code here:
+        MostrarMito();        // TODO add your handling code here:
     }//GEN-LAST:event_botonVerMitoActionPerformed
 
     private void MitologiaADiosesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MitologiaADiosesActionPerformed
-cambiarCard("card5");        // TODO add your handling code here:
+        cambiarCard("card5");        // TODO add your handling code here:
     }//GEN-LAST:event_MitologiaADiosesActionPerformed
 
     private void MitologiaAMitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MitologiaAMitosActionPerformed
-       cambiarCard("card6");
+        cambiarCard("card6");
     }//GEN-LAST:event_MitologiaAMitosActionPerformed
 
     private void MitologiaAMeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MitologiaAMeterActionPerformed
-cambiarCard("card4");        // TODO add your handling code here:
+        cambiarCard("card4");        // TODO add your handling code here:
     }//GEN-LAST:event_MitologiaAMeterActionPerformed
 
     private void MeterADiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MeterADiosActionPerformed
-       cambiarCard("card5"); // TODO add your handling code here:
+        cambiarCard("card5"); // TODO add your handling code here:
     }//GEN-LAST:event_MeterADiosActionPerformed
 
     private void meterAMitosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meterAMitosActionPerformed
-cambiarCard("card6");        // TODO add your handling code here:
+        cambiarCard("card6");        // TODO add your handling code here:
     }//GEN-LAST:event_meterAMitosActionPerformed
 
     private void meterAMitologiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meterAMitologiasActionPerformed
-cambiarCard("card3");        // TODO add your handling code here:
+        cambiarCard("card3");        // TODO add your handling code here:
     }//GEN-LAST:event_meterAMitologiasActionPerformed
 
     private void DiosAMitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiosAMitoActionPerformed
-cambiarCard("card6");        // TODO add your handling code here:
+        cambiarCard("card6");        // TODO add your handling code here:
     }//GEN-LAST:event_DiosAMitoActionPerformed
 
     private void diosAMeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diosAMeterActionPerformed
-cambiarCard("card4");        // TODO add your handling code here:
+        cambiarCard("card4");        // TODO add your handling code here:
     }//GEN-LAST:event_diosAMeterActionPerformed
 
     private void diosAMitologiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_diosAMitologiasActionPerformed
-cambiarCard("card3");        // TODO add your handling code here:
+        cambiarCard("card3");        // TODO add your handling code here:
     }//GEN-LAST:event_diosAMitologiasActionPerformed
 
     private void mitoADiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitoADiosActionPerformed
-cambiarCard("card5");        // TODO add your handling code here:
+        cambiarCard("card5");        // TODO add your handling code here:
     }//GEN-LAST:event_mitoADiosActionPerformed
 
     private void mitoAMeterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitoAMeterActionPerformed
-cambiarCard("card4");        // TODO add your handling code here:
+        cambiarCard("card4");        // TODO add your handling code here:
     }//GEN-LAST:event_mitoAMeterActionPerformed
 
     private void mitoAMitologiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mitoAMitologiaActionPerformed
-cambiarCard("card3");        // TODO add your handling code here:
+        cambiarCard("card3");        // TODO add your handling code here:
     }//GEN-LAST:event_mitoAMitologiaActionPerformed
 
     /**
