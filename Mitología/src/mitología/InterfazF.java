@@ -5,12 +5,13 @@
 package mitología;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author a22iagorg
+ * @authors Iago Riveiro, Sebas y Aitor
  */
 public class InterfazF extends javax.swing.JFrame {
 
@@ -204,6 +205,7 @@ public class InterfazF extends javax.swing.JFrame {
         MitologiaADioses = new javax.swing.JToggleButton();
         MitologiaAMitos = new javax.swing.JToggleButton();
         MitologiaAMeter = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
         PanelAñadirDios = new javax.swing.JPanel();
         seleccionarMitologíaMeterDios = new javax.swing.JComboBox<>();
         nombreMeterDios = new javax.swing.JTextField();
@@ -362,6 +364,14 @@ public class InterfazF extends javax.swing.JFrame {
 
         botonParaQueAparezcan.setBackground(new java.awt.Color(142, 108, 136));
         botonParaQueAparezcan.setText("Buscar");
+        botonParaQueAparezcan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonParaQueAparezcanMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonParaQueAparezcanMouseExited(evt);
+            }
+        });
         botonParaQueAparezcan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonParaQueAparezcanActionPerformed(evt);
@@ -429,6 +439,8 @@ public class InterfazF extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("<html>\nSelecciona las mitologias de las que quieras ver informacion. \n<br>\nNOTA: no se recomienda escoger mas de 3/4 de una vez\n</html>     ");
+
         javax.swing.GroupLayout PanelMitologiaLayout = new javax.swing.GroupLayout(PanelMitologia);
         PanelMitologia.setLayout(PanelMitologiaLayout);
         PanelMitologiaLayout.setHorizontalGroup(
@@ -436,35 +448,34 @@ public class InterfazF extends javax.swing.JFrame {
             .addGroup(PanelMitologiaLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(China)
-                        .addGroup(PanelMitologiaLayout.createSequentialGroup()
-                            .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(Hindú)
-                                .addComponent(Nórdica)
-                                .addComponent(Maya))
-                            .addGap(6, 6, 6))
-                        .addComponent(Celta, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Yoruba, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Babilónica, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Polinesia, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(Eslava, javax.swing.GroupLayout.Alignment.LEADING))
                     .addGroup(PanelMitologiaLayout.createSequentialGroup()
                         .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonParaQueAparezcan)
+                            .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(China)
+                                .addComponent(Celta, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Yoruba, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Babilónica, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Polinesia, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(Eslava, javax.swing.GroupLayout.Alignment.LEADING))
                             .addComponent(Japonesa)
                             .addComponent(Egipcia)
-                            .addComponent(Griega)
-                            .addComponent(botonParaQueAparezcan))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(Griega))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Nórdica)
+                        .addComponent(Hindú)
+                        .addComponent(Maya))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelMitologiaLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(textoDioses, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
+                        .addGap(41, 41, 41)
                         .addComponent(textoMitos, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(32, 32, 32))
                     .addGroup(PanelMitologiaLayout.createSequentialGroup()
-                        .addGap(197, 197, 197)
+                        .addGap(77, 77, 77)
                         .addComponent(tituloDioses)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE)
                         .addComponent(tituloMitos)
@@ -483,7 +494,7 @@ public class InterfazF extends javax.swing.JFrame {
         PanelMitologiaLayout.setVerticalGroup(
             PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelMitologiaLayout.createSequentialGroup()
-                .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(PanelMitologiaLayout.createSequentialGroup()
                         .addGap(62, 62, 62)
                         .addGroup(PanelMitologiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -500,7 +511,9 @@ public class InterfazF extends javax.swing.JFrame {
                             .addComponent(MitologiaADioses)
                             .addComponent(MitologiaAMitos)
                             .addComponent(MitologiaAMeter))
-                        .addGap(26, 26, 26)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Griega)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Egipcia)
@@ -510,7 +523,7 @@ public class InterfazF extends javax.swing.JFrame {
                         .addComponent(Nórdica)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Hindú)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Maya)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Celta)
@@ -524,8 +537,9 @@ public class InterfazF extends javax.swing.JFrame {
                         .addComponent(Polinesia)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Eslava)
-                        .addGap(47, 47, 47)
-                        .addComponent(botonParaQueAparezcan)))
+                        .addGap(18, 18, 18)
+                        .addComponent(botonParaQueAparezcan)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -762,6 +776,14 @@ public class InterfazF extends javax.swing.JFrame {
 
         botonVerMito.setBackground(new java.awt.Color(142, 108, 136));
         botonVerMito.setText("Mostrar Mito");
+        botonVerMito.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                botonVerMitoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                botonVerMitoMouseExited(evt);
+            }
+        });
         botonVerMito.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonVerMitoActionPerformed(evt);
@@ -970,6 +992,23 @@ public class InterfazF extends javax.swing.JFrame {
         cambiarCard("card3");        // TODO add your handling code here:
     }//GEN-LAST:event_mitoAMitologiaActionPerformed
 
+    private void botonParaQueAparezcanMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonParaQueAparezcanMouseEntered
+       // TODO add your handling code here:
+    }//GEN-LAST:event_botonParaQueAparezcanMouseEntered
+
+    private void botonParaQueAparezcanMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonParaQueAparezcanMouseExited
+        botonParaQueAparezcan.setBackground(new Color(142,108,136));  // TODO add your handling code here:
+    }//GEN-LAST:event_botonParaQueAparezcanMouseExited
+
+    private void botonVerMitoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerMitoMouseEntered
+         botonParaQueAparezcan.setBackground(new Color(142,132,213));      // TODO add your handling code here:
+   // TODO add your handling code here:
+    }//GEN-LAST:event_botonVerMitoMouseEntered
+
+    private void botonVerMitoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonVerMitoMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botonVerMitoMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -1045,6 +1084,7 @@ public class InterfazF extends javax.swing.JFrame {
     private javax.swing.JButton inicioAMeter;
     private javax.swing.JButton inicioAMitologias;
     private javax.swing.JButton inicioAMitos;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelMitosDescripcion;
     private javax.swing.JToggleButton meterAMitologias;
     private javax.swing.JToggleButton meterAMitos;
