@@ -18,7 +18,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,114,0,0,2,-3"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,3,114,0,0,3,5"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
@@ -59,7 +59,7 @@
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="ExplicarBotonMitologia" min="-2" pref="117" max="-2" attributes="0"/>
+                              <Component id="explicarBotonMitologia" min="-2" pref="117" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
@@ -71,18 +71,18 @@
                           <Component id="inicioAMitos" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace min="6" pref="6" max="-2" attributes="0"/>
-                              <Component id="ExplicarbotonInformacionMito" min="-2" pref="174" max="-2" attributes="0"/>
+                              <Component id="explicarbotonInformacionMito" min="-2" pref="174" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="42" max="32767" attributes="0"/>
+                      <EmptySpace pref="50" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="inicioAMeter" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="ExplicarBotonMeterDios" alignment="1" min="-2" pref="137" max="-2" attributes="0"/>
+                          <Component id="explicarBotonMeterDios" alignment="1" min="-2" pref="137" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="inicioADios" min="-2" max="-2" attributes="0"/>
-                          <Component id="ExplicarBotonInformacionDioses" min="-2" pref="174" max="-2" attributes="0"/>
+                          <Component id="explicarBotonInformacionDioses" min="-2" pref="174" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
@@ -100,11 +100,11 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="ExplicarBotonMitologia" min="-2" pref="127" max="-2" attributes="0"/>
+                          <Component id="explicarBotonMitologia" min="-2" pref="127" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                              <Component id="ExplicarbotonInformacionMito" alignment="3" min="-2" pref="127" max="-2" attributes="0"/>
-                              <Component id="ExplicarBotonMeterDios" alignment="3" min="-2" pref="107" max="-2" attributes="0"/>
-                              <Component id="ExplicarBotonInformacionDioses" alignment="3" min="-2" pref="117" max="-2" attributes="0"/>
+                              <Component id="explicarbotonInformacionMito" alignment="3" min="-2" pref="127" max="-2" attributes="0"/>
+                              <Component id="explicarBotonMeterDios" alignment="3" min="-2" pref="107" max="-2" attributes="0"/>
+                              <Component id="explicarBotonInformacionDioses" alignment="3" min="-2" pref="117" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="693" max="32767" attributes="0"/>
@@ -157,24 +157,24 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inicioAMitosActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="ExplicarBotonMitologia">
+            <Component class="javax.swing.JLabel" name="explicarBotonMitologia">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa; Dale a este boton e ir&#xe1;s a una pantalla para ver dioses y mitos de diferentes mitolog&#xed;as.&#xa;&#xa;&lt;/html&gt;     "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="ExplicarbotonInformacionMito">
+            <Component class="javax.swing.JLabel" name="explicarbotonInformacionMito">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa; Dale a este boton e ir&#xe1;s a una pantalla donde pordr&#xe1;s leer diferentes mitos una vez sepas su nombre&#xa;&#xa;&lt;/html&gt;     "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="ExplicarBotonMeterDios">
+            <Component class="javax.swing.JLabel" name="explicarBotonMeterDios">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;  Dale a este boton e ir&#xe1;s a una pantalla donde pordr&#xe1;s meter dioses en la base de datos  &lt;/html&gt;     "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="ExplicarBotonInformacionDioses">
+            <Component class="javax.swing.JLabel" name="explicarBotonInformacionDioses">
               <Properties>
                 <Property name="text" type="java.lang.String" value="&lt;html&gt;  Dale a este boton e ir&#xe1;s a una pantalla donde pordr&#xe1;s ver informaci&#xf3;n sobre los dioses  &lt;/html&gt;     "/>
               </Properties>
@@ -199,44 +199,36 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="botonParaQueAparezcan" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="China" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Celta" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Yoruba" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Babilónica" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Polinesia" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Eslava" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="Japonesa" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Egipcia" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Griega" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="botonParaQueAparezcan" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                              <Component id="China" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="Celta" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="Yoruba" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="Babilónica" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="Polinesia" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="Eslava" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="Nórdica" min="-2" max="-2" attributes="0"/>
-                              <Component id="Hindú" min="-2" max="-2" attributes="0"/>
-                              <Component id="Maya" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="Japonesa" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Egipcia" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Griega" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="Nórdica" min="-2" max="-2" attributes="0"/>
+                          <Component id="Hindú" min="-2" max="-2" attributes="0"/>
+                          <Component id="Maya" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" pref="199" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
                               <Component id="textoDioses" min="-2" pref="203" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                               <Component id="textoMitos" min="-2" pref="274" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                               <Component id="tituloDioses" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="236" max="32767" attributes="0"/>
-                              <Component id="tituloMitos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
+                              <EmptySpace min="174" pref="447" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -248,7 +240,10 @@
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="MitologiaAMitos" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="MitologiaAMeter" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="tituloMitos" min="-2" max="-2" attributes="0"/>
+                          <Component id="MitologiaAMeter" min="-2" max="-2" attributes="0"/>
+                      </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -498,44 +493,34 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                          <Component id="explicaciónMeterDios" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="seleccionarMitologíaMeterDios" min="-2" max="-2" attributes="0"/>
-                                          <Component id="nombreMeterPadre" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <Component id="nombreMeterDios" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-                                              <Component id="deidadMeterDios" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                                              <Component id="nombreMeterMadre" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                  <Component id="añadirDios" min="-2" pref="87" max="-2" attributes="0"/>
+                                  <Component id="botonEliminarDios" min="-2" pref="87" max="-2" attributes="0"/>
+                                  <Component id="seleccionarMitologíaMeterDios" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombreMeterPadre" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="botonIrPanelPrincipal" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                      <Component id="meterADios" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                      <Component id="meterAMitos" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                                      <Component id="meterAMitologias" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="añadirDios" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombreMeterDios" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombreMeterMadre" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="deidadMeterDios" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="nombreEliminarDios" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                              <Component id="botonIrPanelPrincipal" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Component id="MeterADios" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                              <Component id="meterAMitos" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              <Component id="meterAMitologias" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="66" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="64" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -545,24 +530,29 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="botonIrPanelPrincipal" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="MeterADios" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="meterADios" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="meterAMitos" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="meterAMitologias" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="seleccionarMitologíaMeterDios" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="nombreMeterDios" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="deidadMeterDios" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="nombreMeterPadre" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="nombreMeterMadre" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="explicaciónMeterDios" min="-2" pref="102" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="seleccionarMitologíaMeterDios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="nombreMeterDios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                      <Component id="deidadMeterDios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="nombreMeterMadre" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="nombreMeterPadre" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="añadirDios" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="569" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+                      <Component id="nombreEliminarDios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="botonEliminarDios" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="361" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -601,7 +591,7 @@
             </Component>
             <Component class="javax.swing.JTextField" name="deidadMeterDios">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Deidad..."/>
+                <Property name="text" type="java.lang.String" value="Deidad de..."/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deidadMeterDiosActionPerformed"/>
@@ -639,7 +629,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="a&#xf1;adirDiosActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JToggleButton" name="MeterADios">
+            <Component class="javax.swing.JToggleButton" name="meterADios">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b2" green="c7" red="63" type="rgb"/>
@@ -648,7 +638,7 @@
                 <Property name="actionCommand" type="java.lang.String" value="Ir a informaci&#xf3;n de dioses"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MeterADiosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="meterADiosActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="meterAMitos">
@@ -673,6 +663,27 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="meterAMitologiasActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JLabel" name="explicaci&#xf3;nMeterDios">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;En este panel puedes meter y elimanr dioses, cubre los campos pedidos y luego dale al bot&#xf3;n. Si su padre o madre es desconocido o no lo quieres meter debes dejar el campo en blanco. Ten en cuanta que si el dios tiene alg&#xfa;n hijo registrado no podr&#xe1;s eliminarlo&#xa;&#xa;&lt;/html&gt;"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JToggleButton" name="botonEliminarDios">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="88" green="6c" red="8e" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Eliminar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEliminarDiosActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JTextField" name="nombreEliminarDios">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Nombre del dios"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="verInformacionDios">
@@ -693,7 +704,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="DiosAInicio" min="-2" max="-2" attributes="0"/>
+                          <Component id="diosAInicio" min="-2" max="-2" attributes="0"/>
                           <Component id="meterNombreDiosInformación" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -703,14 +714,14 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="DiosAMito" min="-2" max="-2" attributes="0"/>
+                              <Component id="diosAMito" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                               <Component id="diosAMeter" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
                               <Component id="diosAMitologias" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="8" max="32767" attributes="0"/>
+                      <EmptySpace pref="16" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
@@ -724,8 +735,8 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="DiosAInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="DiosAMito" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="diosAInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="diosAMito" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="diosAMeter" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="diosAMitologias" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -761,7 +772,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ense&#xf1;arInformacionDiosActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="DiosAInicio">
+            <Component class="javax.swing.JButton" name="diosAInicio">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b2" green="c7" red="63" type="rgb"/>
@@ -769,12 +780,12 @@
                 <Property name="text" type="java.lang.String" value="volver a panel inicio"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DiosAInicioActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diosAInicioActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="textoInformacionDios">
             </Component>
-            <Component class="javax.swing.JToggleButton" name="DiosAMito">
+            <Component class="javax.swing.JToggleButton" name="diosAMito">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="b2" green="c7" red="63" type="rgb"/>
@@ -782,7 +793,7 @@
                 <Property name="text" type="java.lang.String" value="Ir a panel informacion mito"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="DiosAMitoActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="diosAMitoActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JToggleButton" name="diosAMeter">
@@ -834,21 +845,20 @@
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="labelMitosDescripcion" min="-2" pref="665" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="mitoAInicio" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
-                                      <Component id="mitoADios" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                                      <Component id="mitoAMeter" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="mitoAMitologia" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
+                              <Component id="mitoAInicio" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
+                              <Component id="mitoADios" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                              <Component id="mitoAMeter" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+                              <Component id="mitoAMitologia" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="72" max="32767" attributes="0"/>
+                      <EmptySpace pref="80" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="labelMitosDescripcion" min="-2" pref="747" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -867,9 +877,9 @@
                           <Component id="meterNombreMito" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                           <Component id="botonVerMito" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                      <Component id="labelMitosDescripcion" min="-2" pref="388" max="-2" attributes="0"/>
-                      <EmptySpace pref="315" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="labelMitosDescripcion" min="-2" pref="735" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
