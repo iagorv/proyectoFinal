@@ -19,15 +19,15 @@ public class InterfazF extends javax.swing.JFrame {
      */
     public InterfazF() {
         initComponents();
-
+        
     }
     DAO mitologia = new DAO("localhost", 3306, "mitologiabd", "root", "root");
-
+    
     private void cambiarCard(String card) {
         CardLayout cardL = (CardLayout) panelPrincipal.getLayout();
         cardL.show(panelPrincipal, card);
     }
-
+    
     public void mostrarDiosesSeleccionados() {
         String diosesSeleccionados = "";
         boolean griegaSeleccionada = Griega.isSelected();
@@ -42,16 +42,26 @@ public class InterfazF extends javax.swing.JFrame {
         boolean eslavaSeleccionada = Eslava.isSelected();
         boolean polinesiaSeleccionada = Polinesia.isSelected();
         boolean celtaSeleccionada = Celta.isSelected();
-
-        diosesSeleccionados = mitologia.getDiosesSeleccionadosMitologias(griegaSeleccionada,
-                egipciaSeleccionada, nórdicaSeleccionada, japonesaSeleccionada, mayaSeleccionada,
-                hindúSeleccionada, chinaSeleccionada, babilónicaSeleccionada,
-                yorubaSeleccionada, eslavaSeleccionada, polinesiaSeleccionada, celtaSeleccionada);
-
-        textoDioses.setText(diosesSeleccionados);
-
+        
+        if (griegaSeleccionada || egipciaSeleccionada || nórdicaSeleccionada
+                || japonesaSeleccionada || mayaSeleccionada || hindúSeleccionada
+                || chinaSeleccionada || babilónicaSeleccionada || yorubaSeleccionada
+                || eslavaSeleccionada || polinesiaSeleccionada || celtaSeleccionada) {
+            
+            diosesSeleccionados = mitologia.getDiosesSeleccionadosMitologias(griegaSeleccionada,
+                    egipciaSeleccionada, nórdicaSeleccionada, japonesaSeleccionada, mayaSeleccionada,
+                    hindúSeleccionada, chinaSeleccionada, babilónicaSeleccionada,
+                    yorubaSeleccionada, eslavaSeleccionada, polinesiaSeleccionada, celtaSeleccionada);
+            
+            textoDioses.setText(diosesSeleccionados);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error:"
+                    + "Debes seleccionar al menos una mitologia", "Error", JOptionPane.WARNING_MESSAGE);
+            textoDioses.setText("");
+        }
+        
     }
-
+    
     public void mostrarMitosSeleccionados() {
         String mitosSeleccionados = "";
         boolean griegaSeleccionada = Griega.isSelected();
@@ -66,17 +76,23 @@ public class InterfazF extends javax.swing.JFrame {
         boolean eslavaSeleccionada = Eslava.isSelected();
         boolean polinesiaSeleccionada = Polinesia.isSelected();
         boolean celtaSeleccionada = Celta.isSelected();
-
-        mitosSeleccionados = mitologia.getMitosSeleccionadosMitologia(griegaSeleccionada,
-                egipciaSeleccionada, nórdicaSeleccionada, japonesaSeleccionada, mayaSeleccionada,
-                hindúSeleccionada, chinaSeleccionada, babilónicaSeleccionada,
-                yorubaSeleccionada, eslavaSeleccionada, polinesiaSeleccionada, celtaSeleccionada);
-
-        textoMitos.setText(mitosSeleccionados);
+        if (griegaSeleccionada || egipciaSeleccionada || nórdicaSeleccionada
+                || japonesaSeleccionada || mayaSeleccionada || hindúSeleccionada
+                || chinaSeleccionada || babilónicaSeleccionada || yorubaSeleccionada
+                || eslavaSeleccionada || polinesiaSeleccionada || celtaSeleccionada) {
+            mitosSeleccionados = mitologia.getMitosSeleccionadosMitologia(griegaSeleccionada,
+                    egipciaSeleccionada, nórdicaSeleccionada, japonesaSeleccionada, mayaSeleccionada,
+                    hindúSeleccionada, chinaSeleccionada, babilónicaSeleccionada,
+                    yorubaSeleccionada, eslavaSeleccionada, polinesiaSeleccionada, celtaSeleccionada);
+            
+            textoMitos.setText(mitosSeleccionados);
+        } else {
+            textoMitos.setText("");
+        }
     }
-
+    
     public void mostrarDatosDios() {
-
+        
         String nombreDios = meterNombreDiosInformación.getText();
         if (mitologia.comprobarNombre(nombreDios) == "El dios no está en la base de datos") {
             String datos = mitologia.comprobarNombre(nombreDios);
@@ -88,7 +104,7 @@ public class InterfazF extends javax.swing.JFrame {
         }//cambiar TextArea textoInformacionDios por un jLabel
 
     }
-
+    
     public void MostrarMito() {
         String nombreMito = meterNombreMito.getText();
         //El mito no está en la base de datos
@@ -98,47 +114,52 @@ public class InterfazF extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error: El mito no está en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
         } else {
             String informacionMito = mitologia.getinformacionMito(nombreMito);
-
+            
             labelMitosDescripcion.setText("<html>" + informacionMito.replaceAll("\n", "<br>") + "</html>");
         }
     }
-
+    
     public void conseguirAñadirDios() {
         String nombreDiosAñadir = nombreMeterDios.getText();
         String deidadAñadir = deidadMeterDios.getText();
         String nombrePadreAñadir = nombreMeterPadre.getText();
         String nombreMadreAñadir = nombreMeterMadre.getText();
         String mitologiaDiosAñadir = seleccionarMitologíaMeterDios.getSelectedItem().toString();
-
-        boolean seMetioDiosCorrectamente = mitologia.AñadirDios(mitologiaDiosAñadir, nombreDiosAñadir,
-                deidadAñadir, nombrePadreAñadir, nombreMadreAñadir);
-        if (mitologia.ComprobarNombreMeter(nombreDiosAñadir)) {
-            JOptionPane.showMessageDialog(null, "Dios repetido:Ya hay un dios con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
-
+     
+        if (!mitologia.ComprobarNombreMeter(nombreDiosAñadir)) {
+            JOptionPane.showMessageDialog(null, "Dios repetido:"
+                    + "Ya hay un dios con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+            
         }
         if (!mitologia.ComprobarNombreMadreMeter(nombreMadreAñadir)) {
-            JOptionPane.showMessageDialog(null, "Madre incorrecta:No hay ninguna diosa con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
-
+            JOptionPane.showMessageDialog(null, "Madre incorrecta:"
+                    + "No hay ninguna diosa con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+            
         }
         if (mitologia.ComprobarNombreMadreMeter(nombreMadreAñadir)
                 && !mitologia.ComprobarMitologiaMadre(nombreMadreAñadir, mitologiaDiosAñadir)) {
             JOptionPane.showMessageDialog(null, "Madre incorrecta:"
                     + "Esa diosa pertenece a una mitologia diferente a la seleccionada", "Error", JOptionPane.ERROR_MESSAGE);
-
+            
         }
-
+        
         if (!mitologia.ComprobarNombrePadre(nombrePadreAñadir)) {
-            JOptionPane.showMessageDialog(null, "Padre Incorrecto:No hay ningun dios con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
-
+            JOptionPane.showMessageDialog(null, "Padre Incorrecto:"
+                    + "No hay ningun dios con ese nombre", "Error", JOptionPane.ERROR_MESSAGE);
+            
         }
         if (mitologia.ComprobarNombrePadre(nombrePadreAñadir)
-                && !mitologia.ComprobarMitologiaPadre(nombreDiosAñadir, mitologiaDiosAñadir)) {
-            JOptionPane.showMessageDialog(null, "Padre incorrecto:Ese dios pertenece a una mitologia diferente a la seleccionada", "Error", JOptionPane.ERROR_MESSAGE);
-
+                && !mitologia.ComprobarMitologiaPadre(nombrePadreAñadir, mitologiaDiosAñadir)) {
+            JOptionPane.showMessageDialog(null, "Padre incorrecto:"
+                    + "Ese dios pertenece a una mitologia diferente a la seleccionada", "Error", JOptionPane.ERROR_MESSAGE);
+            
         }
-
+            
+       boolean seMetioDiosCorrectamente = mitologia.AñadirDios(mitologiaDiosAñadir, nombreDiosAñadir,
+                deidadAñadir, nombrePadreAñadir, nombreMadreAñadir);
         if (seMetioDiosCorrectamente) {
-            JOptionPane.showMessageDialog(null, "EL dios se añadió correctamente");
+            JOptionPane.showMessageDialog(null, "EL dios se "
+                    + "añadió correctamente");
         }
     }
 
